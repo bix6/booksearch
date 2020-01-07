@@ -1,0 +1,14 @@
+.filter {
+    padding: 10px;
+    text-align: center;
+    background-color: gainsboro;
+}
+
+.filter > label {
+    color: black;
+    margin: 0px 5px 0px 15px;
+}
+
+select {
+    font-size: 18px;
+}

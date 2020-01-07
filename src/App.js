@@ -1,23 +1,33 @@
 import React from 'react';
 import Search from './Search/Search';
+import Filter from './Filter/Filter';
 import BookList from "./BookList/BookList";
 
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            bookList: []
+            searchTerm: "",
+            bookList: [],
+            filter: "none",
+            print: "all"
         }
     }
 
-    newSearch(searchTerm) {
+    newSearch(searchTerm=this.state.searchTerm) {
+        this.setState({
+            searchTerm: searchTerm
+        });
 		const options = {
             method: 'GET'
 		};
         let url = "https://www.googleapis.com/books/v1/volumes";
         const key = "AIzaSyDB4At8HO52HJPUIDGyAa2TyuKUgCxyvLE";
-        url += `?q=${searchTerm}&key=${key}`;
-		
+        url += `?q=${searchTerm}&key=${key}&printType=${this.state.print}`;
+		if (this.state.filter !== "none") {
+            url += `&filter=${this.state.filter}`;
+        }
+
         fetch(url, options)
             .then(response => {
                 if (response.ok) {
@@ -60,11 +70,26 @@ class App extends React.Component {
             .catch(error => console.log(error.message));
     }
 
+    updateFilter(filter) {
+        this.setState({ filter: filter }, () => {
+            this.newSearch();
+        });
+    }
+
+    updatePrint(print) {
+        this.setState({ print: print }, () => {
+            this.newSearch();
+        });
+    }
+
     render() {
         return (
             <main className='App'>
                     <h1>Google Book Search</h1>
                     <Search newSearch={searchTerm => this.newSearch(searchTerm)} />
+                    <Filter 
+                        updateFilter={filter => this.updateFilter(filter)} 
+                        updatePrint={print => this.updatePrint(print)} />
                     <BookList bookList={this.state.bookList}/>
             </main>
         );

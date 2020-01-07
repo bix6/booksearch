@@ -22,7 +22,7 @@ class BookList extends React.Component {
     };
 
     render() {
-        const bookList = this.props.bookList.map(book => <Book bookInfo={book} />);
+        const bookList = this.props.bookList.map((book, i) => <Book bookInfo={book} key={i} />);
         return (
             <div className="book-list">
                 {bookList}

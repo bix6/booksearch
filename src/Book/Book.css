@@ -1,28 +1,50 @@
 .book {
-    border: 5px solid black;
+    border-bottom: 3px solid black;
     text-align: center;
+    margin: 10px;
 }
 
 h2 {
-    border: 1px solid red;
-    margin: 0;
+    margin: 10px;
+    font-size: 26px;
 }
+
 img {
-    border: 1px solid orange;
-    width: 29%;
+    max-width: 200px;
     display: inline-block;
+    margin: 10px;
 }
 
 ol {
-    border: 1px solid yellow;
-    width: 70%;
     display: inline-block;
     text-align: center;
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 10px;
+    font-family: serif;
+    font-size: 18px;
 }
 
 li:nth-child(3) {
-    color: blue;
+    max-width: 700px;
+    margin: 10px auto;
+    font-family: sans-serif;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+@media screen and (min-width: 768px) {
+    .book {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    h2 {
+        width: 100%;
+    }
+    img {
+        width: 200px;
+    }
+    ol {
+        flex: 1 1 70%;
+    }
 }

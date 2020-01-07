@@ -1,10 +1,10 @@
 import React from 'react';
-import Book from "./Book/Book";
+import BookList from "./BookList/BookList";
 
 function App() {
     return (
     <main className='App'>
-        <Book />
+        <BookList />
     </main>
     );
 }
